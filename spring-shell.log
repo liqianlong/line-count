@@ -1,0 +1,7 @@
+1558538087728:MyCountLine -l
+1558538124827:MyCountLine -l java -fp /Users/liqianlong/Documents/ideawork/line-count/src/main/java/com/lechinoy/linecount/test
+1558538230108:test ""23
+1558538236373:test 13
+1558538262101:count java /Users/liqianlong/Documents/ideawork/line-count/src/main/java/com/lechinoy/linecount/test
+1558538360248:count -lan java -fp /Users/liqianlong/Documents/ideawork/line-count/src/main/java/com/lechinoy/linecount/test
+1558538384422:count -lan java -fp /Users/liqianlong/Documents/ideawork/line-count
