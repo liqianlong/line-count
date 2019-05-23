@@ -2,6 +2,7 @@ package com.lechinoy.linecount.count;
 
 import com.lechinoy.linecount.file.FileList;
 import com.lechinoy.linecount.language.JavaLanguage;
+import com.lechinoy.linecount.language.Language;
 import com.lechinoy.linecount.language.LanguageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +32,12 @@ public class CountService {
 
         final LineCount[] lineCount = {new LineCount()};
 
-        List<String> filePathList = FileList.getFilePathList(new File(path), new ArrayList<>(), (name -> LanguageFactory.getLanguageConfig(language).isLanguageFile(name)));
+        Language lan = LanguageFactory.getLanguageConfig(language);
+
+        List<String> filePathList = FileList.getFilePathList(new File(path), new ArrayList<>(), (lan::isLanguageFile));
 
         filePathList.stream()
-                .map(filePath -> lineCountThreadPool.submit(new LineCountCallable(filePath, new JavaLanguage())))
+                .map(filePath -> lineCountThreadPool.submit(new LineCountCallable(filePath, lan)))
                 .forEach(lineCountFuture -> {
                     LineCount result = new LineCount();
                     try {
